@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { CssBaseline, Paper } from '@material-ui/core';
 
-function App() {
+import Footer from './components/Footer';
+import ProfileForm from './components/FormControl/ProfileForm';
+
+import Header from './components/Header';
+
+import ModalStateContextProvider from './context/ModalStateContext';
+import footerItems from './Data/footerItems';
+import menuItems from './Data/menu';
+import EditProfile from './pages/EditProfile';
+import AddBenefitContextProvider from './context/AddBenefitContext';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ModalStateContextProvider>
+      <AddBenefitContextProvider>
+        <CssBaseline />
+        <Header menuLinks={menuItems} />
+        <Paper>
+          <EditProfile>
+            <ProfileForm />
+          </EditProfile>
+        </Paper>
+        <Footer footerItems={footerItems} />
+      </AddBenefitContextProvider>
+    </ModalStateContextProvider>
   );
-}
+};
 
 export default App;
